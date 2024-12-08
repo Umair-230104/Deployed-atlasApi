@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 
+// Styled Components
 const Nav = styled.nav`
   background-color: #1c1c1c;
   color: #ffffff;
@@ -36,21 +37,35 @@ const BurgerMenu = styled.div`
   flex-direction: column;
   cursor: pointer;
 
-  span {
-    height: 3px;
-    width: 25px;
-    background-color: #ffffff;
-    margin: 4px 0;
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
-
   @media (max-width: 768px) {
     display: flex;
   }
 `;
 
-const NavLinks = styled.div`
+const BurgerSpan = styled.span.withConfig({
+  shouldForwardProp: (prop) => prop !== "isMenuOpen",
+})`
+  height: 3px;
+  width: 25px;
+  background-color: #ffffff;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.3s;
+
+  &:nth-child(1) {
+    transform: ${({ isMenuOpen }) => (isMenuOpen ? "rotate(45deg)" : "rotate(0)")};
+  }
+  &:nth-child(2) {
+    opacity: ${({ isMenuOpen }) => (isMenuOpen ? 0 : 1)};
+  }
+  &:nth-child(3) {
+    transform: ${({ isMenuOpen }) => (isMenuOpen ? "rotate(-45deg)" : "rotate(0)")};
+  }
+`;
+
+const NavLinks = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "isOpen",
+})`
   display: flex;
   gap: 1.5rem;
 
@@ -82,6 +97,7 @@ const NavLinks = styled.div`
   }
 `;
 
+// Header Component
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
@@ -89,9 +105,9 @@ const Header = () => {
     <Nav>
       <NavLogo to="/">Atlas API</NavLogo>
       <BurgerMenu onClick={() => setMenuOpen(!isMenuOpen)}>
-        <span style={{ transform: isMenuOpen ? "rotate(45deg)" : "rotate(0)" }}></span>
-        <span style={{ opacity: isMenuOpen ? "0" : "1" }}></span>
-        <span style={{ transform: isMenuOpen ? "rotate(-45deg)" : "rotate(0)" }}></span>
+        <BurgerSpan isMenuOpen={isMenuOpen}></BurgerSpan>
+        <BurgerSpan isMenuOpen={isMenuOpen}></BurgerSpan>
+        <BurgerSpan isMenuOpen={isMenuOpen}></BurgerSpan>
       </BurgerMenu>
       <NavLinks isOpen={isMenuOpen}>
         <NavLink to="/" end>

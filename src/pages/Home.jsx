@@ -26,11 +26,18 @@ function Home() {
     maxWidth: "800px",
     lineHeight: "1.8",
     textAlign: "justify",
-    padding: "0 20px",
+    padding: "20px",
     backgroundColor: "rgba(255, 255, 255, 0.2)", // Semi-transparent background
     borderRadius: "10px",
     boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)", // Adds depth to the paragraph box
     backdropFilter: "blur(10px)", // Blur effect for a modern look
+  };
+
+  const listStyle = {
+    textAlign: "left",
+    margin: "1rem 0",
+    paddingLeft: "40px",
+    lineHeight: "1.8",
   };
 
   const imageStyle = {
@@ -83,19 +90,20 @@ function Home() {
           and organizations by enabling easy integration of global geographic,
           demographic, and cultural information into their applications or
           workflows.
-          <br />
-          <br />
+        </p>
+        <p style={paragraphStyle}>
           <strong>Vision and Purpose:</strong>
-          <ul>
-            <li>Global Accessibility of Data</li>
-            <li>Streamlined Integration</li>
-            <li>Data-Driven Insights</li>
-            <li>Customizability and Flexibility</li>
-            <li>Promoting Open Access</li>
-            <li>Enhanced User Experience</li>
-            <li>Security and Scalability</li>
-          </ul>
-          <br />
+        </p>
+        <ul style={listStyle}>
+          <li>Global Accessibility of Data</li>
+          <li>Streamlined Integration</li>
+          <li>Data-Driven Insights</li>
+          <li>Customizability and Flexibility</li>
+          <li>Promoting Open Access</li>
+          <li>Enhanced User Experience</li>
+          <li>Security and Scalability</li>
+        </ul>
+        <p style={paragraphStyle}>
           By focusing on simplicity, accessibility, and functionality, AtlasAPI
           aligns with the broader vision of creating a globally connected and
           data-informed world.

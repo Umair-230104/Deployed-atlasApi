@@ -34,14 +34,13 @@ const AtlasUrl = "https://atlasapi.ut-cphb.dk/api/countries";
 function App() {
 
   const [countries, setCountries ] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
 
 
   useEffect(() => {
     fetch(AtlasUrl)
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Failed to fetch Pokémon data");
+          throw new Error("Failed to fetch Atlas data");
         }
         return res.json();
       })
