@@ -1,36 +1,52 @@
+import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = styled.nav`
-  background-color: #1c1c1c; /* Dark gray matching the logo's background */
-  color: #ffffff; /* White text for contrast */
+  background-color: #1c1c1c;
+  color: #ffffff;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow for depth */
-  font-family: 'Roboto', sans-serif;
   position: sticky;
   top: 0;
   z-index: 1000;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const NavLogo = styled(Link)`
-  color: #ffffff; /* White text for the logo */
+  color: #ffffff;
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 2px;
-  display: flex;
-  align-items: center;
-
-  img {
-    height: 40px; /* Logo height */
-    margin-right: 10px; /* Spacing between the logo and text */
-  }
 
   &:hover {
-    color: #00b4d8; /* Light blue hover effect */
+    color: #00b4d8;
+  }
+`;
+
+const BurgerMenu = styled.div`
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+
+  span {
+    height: 3px;
+    width: 25px;
+    background-color: #ffffff;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
   }
 `;
 
@@ -38,31 +54,46 @@ const NavLinks = styled.div`
   display: flex;
   gap: 1.5rem;
 
+  @media (max-width: 768px) {
+    display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
   a {
-    color: #ffffff; /* White for text */
+    color: #ffffff;
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    padding: 0.5rem 0;
 
     &.active {
-      border-bottom: 2px solid #00b4d8; /* Light blue for active link */
+      border-bottom: 2px solid #00b4d8;
     }
 
     &:hover {
-      color: #00b4d8; /* Light blue for hover effect */
+      color: #00b4d8;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      padding: 0.5rem 0;
     }
   }
 `;
 
 const Header = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
   return (
     <Nav>
-      <NavLogo to="/">
-        Atlas API
-      </NavLogo>  
-
-      <NavLinks>
+      <NavLogo to="/">Atlas API</NavLogo>
+      <BurgerMenu onClick={() => setMenuOpen(!isMenuOpen)}>
+        <span style={{ transform: isMenuOpen ? "rotate(45deg)" : "rotate(0)" }}></span>
+        <span style={{ opacity: isMenuOpen ? "0" : "1" }}></span>
+        <span style={{ transform: isMenuOpen ? "rotate(-45deg)" : "rotate(0)" }}></span>
+      </BurgerMenu>
+      <NavLinks isOpen={isMenuOpen}>
         <NavLink to="/" end>
           Home
         </NavLink>
@@ -76,7 +107,6 @@ const Header = () => {
         <NavLink to="/Countries/top-population">Top Population</NavLink>
         <NavLink to="/Countries/lowest-population">Lowest Population</NavLink>
         <Link to="/api-docs">API Documentation</Link>
-        
       </NavLinks>
     </Nav>
   );
