@@ -55,7 +55,7 @@ function Toppopulation() {
   useEffect(() => {
     const fetchTopPopulation = async () => {
       try {
-        const response = await fetch("https://atlasapi.ut-cphb.dk/api/countries/top-population");
+        const response = await fetch("https://atlasapi.cphmk.dk/api/countries/top-population");
         if (!response.ok) {
           throw new Error("Failed to fetch top population data");
         }

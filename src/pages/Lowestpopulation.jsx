@@ -56,7 +56,7 @@ function Lowestpopulation() {
     const fetchLowestPopulation = async () => {
       try {
         const response = await fetch(
-          "https://atlasapi.ut-cphb.dk/api/countries/lowest-population"
+          "https://atlasapi.cphmk.dk/api/countries/lowest-population"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch lowest population data");
