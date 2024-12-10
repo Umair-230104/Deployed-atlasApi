@@ -29,7 +29,7 @@ const Layout = () => (
   </div>
 );
 
-const AtlasUrl = "https://atlasapi.ut-cphb.dk/api/countries";
+const AtlasUrl = "https://atlasapi.cphmk.dk/api/countries";
 
 function App() {
 
