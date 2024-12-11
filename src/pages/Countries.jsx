@@ -77,7 +77,7 @@ function Countries({ countries }) {
         {countries.map((country, index) => (
           <CountryCard key={index}>
             {/* Show Flag */}
-            <img src={country.flag} alt={`Flag of ${country.name.common}`} />
+            <img src={country.flags.png || country.flagUrl} alt={`Flag of ${country.name.common}`} />
             <h3>{country.name.common}</h3>
             <p>
               <strong>Official Name:</strong> {country.name.official || "Not Available"}
