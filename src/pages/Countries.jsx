@@ -45,6 +45,13 @@ const CountryCard = styled.div`
     font-size: 0.9rem;
     line-height: 1.4;
   }
+
+  img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ErrorMessage = styled.p`
@@ -69,6 +76,8 @@ function Countries({ countries }) {
       <CountryList>
         {countries.map((country, index) => (
           <CountryCard key={index}>
+            {/* Show Flag */}
+            <img src={country.flag} alt={`Flag of ${country.name.common}`} />
             <h3>{country.name.common}</h3>
             <p>
               <strong>Official Name:</strong> {country.name.official || "Not Available"}
